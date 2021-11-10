@@ -1,0 +1,102 @@
+[
+    {
+        "name": "BMW 8-SERIE",
+        "price": "62,000",
+        "year": "2021",
+        "color": "Grey",
+        "rating": 5,
+        "poweredBy": "Petrol",
+        "description": "How the adventure ended will be seen anon. Aouda was anxious, though she said nothing. As for Passepartout, he thought Mr. Fogg’s manoeuvre simply glorious. The captain had said “between eleven and twelve knots,” and the Henrietta confirmed his prediction.",
+        "photo": "https://demo.vehica.com/wp-content/uploads/2020/08/6.jpg"
+    },
+    {
+        "name": "CHEVROLET CAMARO",
+        "price": "40,000",
+        "year": "2021",
+        "color": "Blue",
+        "rating": 3,
+        "poweredBy": "Diesel",
+        "description": "Chevrolet Camaro is adventure ended will be seen anon. Aouda was anxious, though she said nothing. As for Passepartout, he thought Mr. Fogg’s manoeuvre simply glorious. The captain had said “between eleven and twelve knots,” and the Henrietta confirmed his prediction.",
+        "photo": "https://demo.vehica.com/wp-content/uploads/2020/08/5.jpg"
+    },
+    {
+        "name": "FERRARI LAFERRARI",
+        "price": "810,000",
+        "year": "2021",
+        "color": "Red",
+        "rating": 5,
+        "poweredBy": "Diesel",
+        "description": "Ferrari is adventure ended will be seen anon. Aouda was anxious, though she said nothing. As for Passepartout, he thought Mr. Fogg’s manoeuvre simply glorious. The captain had said “between eleven and twelve knots,” and the Henrietta confirmed his prediction.",
+        "photo": "https://demo.vehica.com/wp-content/uploads/2020/09/car-red.jpg"
+    },
+    {
+        "name": "AUDI A8 4-DOOR SEDAN SILVER",
+        "price": "70,000",
+        "year": "2021",
+        "color": "Silver",
+        "rating": 5,
+        "poweredBy": "Diesel",
+        "description": "the Henrietta might cross the three thousand miles from New York to Liverpool in the nine days, between the 12th and the 21st of December. It is true that, once arrived, the affair on board the Henrietta, added to that of the Bank of England, might create more difficulties for Mr. Fogg than he imagined or could desire.",
+        "photo": "https://demo.vehica.com/wp-content/uploads/2020/08/audi3.jpg"
+    },
+    {
+        "name": "MERCEDES-BENZ",
+        "price": "76,000",
+        "year": "2021",
+        "color": "Silver",
+        "rating": 4,
+        "poweredBy": "Diesel",
+        "description": "How the adventure ended will be seen anon. Aouda was anxious, though she said nothing. As for Passepartout, he thought Mr. Fogg’s manoeuvre simply glorious. The captain had said “between eleven and twelve knots,” and the Henrietta confirmed his prediction.",
+        "photo": "https://demo.vehica.com/wp-content/uploads/2020/02/2-38-768x512.jpg"
+    },
+    {
+        "name": "AUDI A4 4-DOOR SEDDAN",
+        "price": "23,000",
+        "year": "2021",
+        "color": "Blue",
+        "rating": 2,
+        "poweredBy": "Petrol",
+        "description": " the Henrietta might cross the three thousand miles from New York to Liverpool in the nine days, between the 12th and the 21st of December. It is true that, once arrived, the affair on board the Henrietta, added to that of the Bank of England, might create more difficulties for Mr. Fogg than he imagined or could desire.",
+        "photo": "https://demo.vehica.com/wp-content/uploads/2020/02/audi1.jpg"
+    },
+    {
+        "name": "AUDI A8 4-DOOR SEDAN BLUE",
+        "price": "14,000",
+        "year": "2017",
+        "color": "Silver",
+        "rating": 1,
+        "poweredBy": "Petrol",
+        "description": "Audi A8 Aouda was anxious, though she said nothing. As for Passepartout, he thought Mr. Fogg’s manoeuvre simply glorious. The captain had said “between eleven and twelve knots,” and the Henrietta confirmed his prediction.",
+        "photo": "https://demo.vehica.com/listing/bmw-8-serie-new-2-door-coupe-grey/"
+    },
+    {
+        "name": "AUDI A8 4-DOOR SEDAN",
+        "price": "30,000",
+        "year": "2016",
+        "color": "Silver",
+        "rating": 3,
+        "poweredBy": "Petrol",
+        "description": "Audi A8 will be seen anon. Aouda was anxious, though she said nothing. As for Passepartout, he thought Mr. Fogg’s manoeuvre simply glorious. The captain had said “between eleven and twelve knots,” and the Henrietta confirmed his prediction.",
+        "photo": "https://demo.vehica.com/wp-content/uploads/2020/02/1-32-1024x683.jpg"
+    },
+    {
+        "name": "PORSCHE 718 CAYMAN",
+        "price": "61,000",
+        "year": "2021",
+        "color": "Grey",
+        "rating": 4,
+        "poweredBy": "Petrol",
+        "description": "Porsche 718 is the adventure ended will be seen anon. Aouda was anxious, though she said nothing. As for Passepartout, he thought Mr. Fogg’s manoeuvre simply glorious. The captain had said “between eleven and twelve knots,” and the Henrietta confirmed his prediction.",
+        "photo": "https://demo.vehica.com/wp-content/uploads/2020/02/1-74-1024x683.jpg"
+    },
+    {
+        "name": "FERRARI GTC4",
+        "price": "110,000",
+        "year": "2019",
+        "color": "Red",
+        "rating": 5,
+        "poweredBy": "Diesel",
+        "description": "Rerrari GTC4 are the most adventure ended will be seen anon. Aouda was anxious, though she said nothing. As for Passepartout, he thought Mr. Fogg’s manoeuvre simply glorious. The captain had said “between eleven and twelve knots,” and the Henrietta confirmed his prediction.",
+        "photo": "https://demo.vehica.com/wp-content/uploads/2020/02/1-31.jpg"
+    }
+]
