@@ -1,9 +1,18 @@
 import React, { useState } from 'react';
-import { TextField, Button } from '@mui/material';
+import { TextField, Button, Container, Grid } from '@mui/material';
 import useAuth from '../../../../hooks/useAuth/useAuth';
+import { Link } from 'react-router-dom';
+import Navber from '../../Navber/Navber';
+import { useLocation, useHistory } from 'react-router';
 const Login = () => {
     const [loginData, setLoginData] = useState({})
-    const { googleHandler } = useAuth()
+    const { googleHandler, singInEmailPass } = useAuth()
+    const location = useLocation()
+    const history = useHistory()
+
+    const googleLoginHandler = (location, history) => {
+        googleHandler(location, history)
+    }
 
     const LoingChangeHandler = e => {
         const field = e.target.name
@@ -16,35 +25,49 @@ const Login = () => {
 
     const submitLoginHandler = e => {
         e.preventDefault()
-        // registerAccount(regiData.email, regiData.password, regiData.name)
+        singInEmailPass(loginData.email, loginData.password, location, history)
+        if (loginData) {
+            alert('login successfully')
+        }
     }
     return (
-        <div>
-            <form onSubmit={submitLoginHandler}>
-                <TextField
-                    sx={{ my: 1, width: '30%' }}
-                    onBlur={LoingChangeHandler}
-                    id="filled-basic"
-                    label="Email"
-                    placeholder="Enter Your Email"
-                    name="email"
-                    type="email"
-                    variant="filled"
-                /> <br />
-                <TextField
-                    sx={{ my: 1, width: '30%' }}
-                    onBlur={LoingChangeHandler}
-                    id="filled-basic"
-                    label="Password"
-                    placeholder="Enter Your Password"
-                    name="password"
-                    type="password"
-                    variant="filled"
-                /> <br />
-                <Button sx={{ width: '30%' }} type="submit" variant="contained">Submit</Button>
-            </form>
-            <Button sx={{ width: '30%', my: 2 }} onClick={googleHandler} variant="contained">Google Sign In</Button>
-        </div>
+        <>
+            <Navber />
+            <Container>
+                <Grid sx={{ alignItems: 'center' }} container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+                    <Grid item xs={12} sm={6} md={6}>
+                        <form onSubmit={submitLoginHandler}>
+                            <TextField
+                                sx={{ my: 1, width: '100%', background: '#fff' }}
+                                onBlur={LoingChangeHandler}
+                                id="filled-basic"
+                                label="Email"
+                                placeholder="Enter Your Email"
+                                name="email"
+                                type="email"
+                                variant="filled"
+                            /> <br />
+                            <TextField
+                                sx={{ my: 1, width: '100%', background: '#fff' }}
+                                onBlur={LoingChangeHandler}
+                                id="filled-basic"
+                                label="Password"
+                                placeholder="Enter Your Password"
+                                name="password"
+                                type="password"
+                                variant="filled"
+                            /> <br />
+                            <Button sx={{ width: '100%', my: 1 }} type="submit" variant="contained">Login</Button>
+                        </form>
+                        <Link to="/register">Create A New Account?Register Here</Link> <br />
+                        <Button sx={{ width: '100%', mt: 3 }} onClick={googleLoginHandler} variant="contained">Google Sign In</Button>
+                    </Grid>
+                    <Grid item xs={12} sm={6} md={6}>
+                        <img style={{ width: '100%' }} src="https://cdni.iconscout.com/illustration/premium/thumb/user-login-4268415-3551762.png" alt="" />
+                    </Grid>
+                </Grid>
+            </Container>
+        </>
     );
 };
 

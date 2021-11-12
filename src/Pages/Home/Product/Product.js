@@ -12,7 +12,7 @@ const Product = ({ product }) => {
     return (
 
         <Grid item xs={4} sm={4} md={4}>
-            <Card sx={{ maxWidth: 345 }}>
+            <Card sx={{ background: '#1a212c', color: '#fff' }}>
                 <CardMedia
                     component="img"
                     alt="green iguana"
@@ -23,7 +23,7 @@ const Product = ({ product }) => {
                     <Typography gutterBottom variant="h5" component="div">
                         {name}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography sx={{ color: '#fff' }} variant="body2" color="text.secondary">
                         Lizards are a widespread group of squamate reptiles, with over 6,000
                         species, ranging across all continents except Antarctica
                     </Typography>

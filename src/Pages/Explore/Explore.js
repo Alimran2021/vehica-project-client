@@ -10,6 +10,7 @@ import Box from '@mui/material/Box';
 import { Container } from '@mui/material';
 import useProducts from '../../hooks/useProducts/useProducts';
 import Navber from '../Shared/Navber/Navber';
+import { Link } from 'react-router-dom';
 
 const Explore = () => {
     const products = useProducts()
@@ -38,8 +39,9 @@ const Explore = () => {
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
-
-                                        <Button size="small">Parches Now</Button>
+                                        <Link to={`/purchaseOrder/${product?._id}`}>
+                                            <Button size="small">Parches Now</Button>
+                                        </Link>
                                     </CardActions>
                                 </Card>
 

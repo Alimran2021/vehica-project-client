@@ -1,18 +1,16 @@
-import { Typography, Box } from '@mui/material';
-import React, { useEffect, useState } from 'react';
-import useAuth from '../../hooks/useAuth/useAuth';
+import * as React from 'react';
+import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import { Paper, Grid } from '@mui/material/';
-import { styled } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
-import SendIcon from '@mui/icons-material/Send';
-import Stack from '@mui/material/Stack';
+import { useForm } from 'react-hook-form';
+
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
         backgroundColor: theme.palette.common.black,
@@ -31,32 +29,33 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
         border: 0,
     },
 }));
-const MyOrders = () => {
-    const [myOrders, setMyOrders] = useState([])
-    const { user } = useAuth()
-    console.log(myOrders.length)
-    useEffect(() => {
-        const url = `https://guarded-savannah-01945.herokuapp.com/myOrders/${user?.email}`
-        fetch(url)
+
+
+const ManageAllOrders = () => {
+    const [manageOrders, setManageOrders] = React.useState([])
+    const [manageOrderId, setManageOrderId] = React.useState('')
+    const { register, handleSubmit } = useForm();
+    React.useEffect(() => {
+        fetch('https://guarded-savannah-01945.herokuapp.com/manageOrders')
             .then(res => res.json())
-            .then(data => setMyOrders(data))
-    }, [user?.email])
-    const itemDeleteHandler = id => {
-        console.log(id)
-        const procced = window.confirm('Are You Sure Delete This Item?')
-        if (procced) {
-            const url = `https://guarded-savannah-01945.herokuapp.com/myOrders/${id}`
-            fetch(url, {
-                method: 'DELETE'
-            })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.deletedCount > 0) {
-                        const itemDelete = myOrders.filter(myOrder => myOrder._id !== id)
-                        setMyOrders(itemDelete)
-                    }
-                })
-        }
+            .then(data => setManageOrders(data))
+    }, [])
+    const manageOrderIdHandler = (id) => {
+        setManageOrderId(id)
+    }
+    const onSubmit = data => {
+        fetch(`https://guarded-savannah-01945.herokuapp.com/manageOrder/${manageOrderId}`, {
+            method: "PUT",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(data)
+
+        })
+            .then(res => res.json())
+            .then(data => console.log(data))
+
+        console.log(data)
     }
     return (
         <TableContainer xs={12} component={Paper}>
@@ -73,7 +72,7 @@ const MyOrders = () => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {myOrders.map((row) => (
+                    {manageOrders.map((row) => (
                         <StyledTableRow key={row.name}>
                             <StyledTableCell component="th" scope="row">
                                 {row.name}
@@ -82,9 +81,20 @@ const MyOrders = () => {
                             <StyledTableCell align="right">{row.adress}</StyledTableCell>
                             <StyledTableCell align="right">{row.number}</StyledTableCell>
                             <StyledTableCell align="right">{row.productName}</StyledTableCell>
-                            <StyledTableCell align="right">{row.status}</StyledTableCell>
                             <StyledTableCell align="right">
-                                <Button onClick={() => itemDeleteHandler(row._id)} variant="outlined" startIcon={<DeleteIcon />}>
+                                <form onSubmit={handleSubmit(onSubmit)}>
+                                    <select
+                                        onClick={() => manageOrderIdHandler(row?._id)}
+                                        {...register("status")}
+                                    >
+                                        <option value={row?.status}>{row?.status}</option>
+                                        <option value="shipped">shipped</option>
+                                    </select>
+                                    <input type="submit" />
+                                </form>
+                            </StyledTableCell>
+                            <StyledTableCell align="right">
+                                <Button onClick='{() => itemDeleteHandler(row._id)}' variant="outlined" startIcon={<DeleteIcon />}>
                                     Delete
                                 </Button>
                             </StyledTableCell>
@@ -96,4 +106,4 @@ const MyOrders = () => {
     );
 };
 
-export default MyOrders;
+export default ManageAllOrders;

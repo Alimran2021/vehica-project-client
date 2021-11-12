@@ -19,7 +19,7 @@ const Navber = () => {
                         <Nav>
                             <Nav.Link as={Link} to="/home">Home</Nav.Link>
                             <Nav.Link as={Link} to="/explore">Explore</Nav.Link>
-                            <Nav.Link as={Link} to="/my orders">My Orders</Nav.Link>
+                            <Nav.Link as={Link} to="/dashboard">Dashboard</Nav.Link>
                             <Nav.Link as={Link} to="/login">Login</Nav.Link>
                             <Nav.Link eventKey={2} href="#memes">
                                 Dank memes

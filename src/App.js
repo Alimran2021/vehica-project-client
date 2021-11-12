@@ -7,34 +7,41 @@ import PurchaseOrder from './Pages/PurchaseOrder/PurchaseOrder';
 import Register from './Pages/Shared/Login/Register/Register';
 import Login from './Pages/Shared/Login/Login/Login';
 import AuthProvider from './context/AuthProvider/AuthProvider';
+import Dashboard from './Pages/Dashboard/Dashboard/Dashboard';
+import PrivateRoute from './Pages/Shared/Login/PrivateRoute/PrivateRoute';
 
 
 function App() {
   return (
-    <AuthProvider>
-      <Router>
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route exact path="/home">
-            <Home />
-          </Route>
-          <Route exact path="/explore">
-            <Explore />
-          </Route>
-          <Route exact path="/purchaseOrder/:productId">
-            <PurchaseOrder />
-          </Route>
-          <Route exact path="/register">
-            <Register />
-          </Route>
-          <Route exact path="/login">
-            <Login />
-          </Route>
-        </Switch>
-      </Router>
-    </AuthProvider>
+    <div>
+      <AuthProvider>
+        <Router>
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route path="/home">
+              <Home />
+            </Route>
+            <Route path="/explore">
+              <Explore />
+            </Route>
+            <PrivateRoute exact path="/purchaseOrder/:productId">
+              <PurchaseOrder />
+            </PrivateRoute>
+            <Route path="/dashboard">
+              <Dashboard />
+            </Route>
+            <Route path="/register">
+              <Register />
+            </Route>
+            <Route path="/login">
+              <Login />
+            </Route>
+          </Switch>
+        </Router>
+      </AuthProvider>
+    </div>
   );
 }
 
