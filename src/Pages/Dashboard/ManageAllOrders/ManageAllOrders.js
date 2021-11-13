@@ -10,6 +10,8 @@ import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useForm } from 'react-hook-form';
+import { purple } from '@mui/material/colors';
+import swal from 'sweetalert';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -17,20 +19,29 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
         color: theme.palette.common.white,
     },
     [`&.${tableCellClasses.body}`]: {
+        backgroundColor: '#001e3c',
+        color: 'white',
         fontSize: 14,
     },
 }));
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
     '&:nth-of-type(odd)': {
-        backgroundColor: theme.palette.action.hover,
+        backgroundColor: '#001e3c',
+        color: 'white'
     },
     // hide last border
     '&:last-child td, &:last-child th': {
         border: 0,
     },
 }));
-
-
+// button code here
+const ColorButton = styled(Button)(({ theme }) => ({
+    color: theme.palette.getContrastText(purple[500]),
+    backgroundColor: purple[500],
+    '&:hover': {
+        backgroundColor: purple[700],
+    },
+}));
 const ManageAllOrders = () => {
     const [manageOrders, setManageOrders] = React.useState([])
     const [manageOrderId, setManageOrderId] = React.useState('')
@@ -53,9 +64,45 @@ const ManageAllOrders = () => {
 
         })
             .then(res => res.json())
-            .then(data => console.log(data))
+            .then(data => {
+                console.log(data)
+                if (data) {
+                    swal("updated completed");
+                }
+            })
 
         console.log(data)
+    }
+    const itemDeleteHandler = (id) => {
+        const procced = swal({
+            title: "Are you sure?",
+            text: "Are you sure delete this Order!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    swal("Deleted successfully!", {
+                        icon: "success",
+                    });
+                } else {
+                    swal("Your Order item safe!");
+                }
+            });
+        if (procced) {
+            const url = `https://guarded-savannah-01945.herokuapp.com/myOrders/${id}`
+            fetch(url, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.deletedCount > 0) {
+                        const itemDelete = manageOrders.filter(myOrder => myOrder._id !== id)
+                        setManageOrders(itemDelete)
+                    }
+                })
+        }
     }
     return (
         <TableContainer xs={12} component={Paper}>
@@ -83,18 +130,18 @@ const ManageAllOrders = () => {
                             <StyledTableCell align="right">{row.productName}</StyledTableCell>
                             <StyledTableCell align="right">
                                 <form onSubmit={handleSubmit(onSubmit)}>
-                                    <select
+                                    <select style={{ backgroundColor: 'pink', padding: '10px', borderRadius: '5px' }}
                                         onClick={() => manageOrderIdHandler(row?._id)}
                                         {...register("status")}
                                     >
                                         <option value={row?.status}>{row?.status}</option>
                                         <option value="shipped">shipped</option>
                                     </select>
-                                    <input type="submit" />
+                                    <ColorButton type="submit" sx={{ my: 1 }} variant="contained">Update</ColorButton>
                                 </form>
                             </StyledTableCell>
                             <StyledTableCell align="right">
-                                <Button onClick='{() => itemDeleteHandler(row._id)}' variant="outlined" startIcon={<DeleteIcon />}>
+                                <Button onClick={() => itemDeleteHandler(row._id)} variant="outlined" startIcon={<DeleteIcon />}>
                                     Delete
                                 </Button>
                             </StyledTableCell>

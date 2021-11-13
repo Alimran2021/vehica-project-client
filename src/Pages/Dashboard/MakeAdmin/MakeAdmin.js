@@ -22,7 +22,7 @@ const MakeAdmin = () => {
     }
     return (
         <Container>
-            <Typography sx={{ color: 'white' }} variant="h4">
+            <Typography sx={{ color: 'white', my: 4, textAlign: 'center' }} variant="h4">
                 Make A Admin
             </Typography>
             <form onSubmit={adminHandler}>
@@ -36,7 +36,7 @@ const MakeAdmin = () => {
                     type="email"
                     variant="filled"
                 /> <br />
-                <Button type="submit" sx={{ width: '70%', mt: 3 }} variant="contained">Google Sign In</Button>
+                <Button type="submit" sx={{ width: '40%', mt: 3, backgroundColor: '#ff4605' }} variant="contained">Make Admin</Button>
             </form>
         </Container>
     );

@@ -9,6 +9,7 @@ import Login from './Pages/Shared/Login/Login/Login';
 import AuthProvider from './context/AuthProvider/AuthProvider';
 import Dashboard from './Pages/Dashboard/Dashboard/Dashboard';
 import PrivateRoute from './Pages/Shared/Login/PrivateRoute/PrivateRoute';
+import PageNotFound from './Pages/PageNotFound/PageNotFound';
 
 
 function App() {
@@ -37,6 +38,9 @@ function App() {
             </Route>
             <Route path="/login">
               <Login />
+            </Route>
+            <Route path="*">
+              <PageNotFound />
             </Route>
           </Switch>
         </Router>

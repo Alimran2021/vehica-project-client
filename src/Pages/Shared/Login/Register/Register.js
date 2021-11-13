@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
-import { TextField, Button, Container } from '@mui/material';
+import { TextField, Button, Container, Typography } from '@mui/material';
 import useAuth from '../../../../hooks/useAuth/useAuth';
 import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
 import Navber from '../../Navber/Navber';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import swal from 'sweetalert';
+import { useLocation, useHistory } from 'react-router';
 const Register = () => {
     const [regiData, setRegiData] = useState({})
     const { registerAccount } = useAuth()
+    const location = useLocation()
+    const history = useHistory()
 
     const regiChangeHandler = e => {
         const field = e.target.name
@@ -21,9 +24,9 @@ const Register = () => {
 
     const submitRegiHandler = e => {
         e.preventDefault()
-        registerAccount(regiData.email, regiData.password, regiData.name)
+        registerAccount(regiData.email, regiData.password, regiData.name, location, history)
         if (regiData) {
-            alert('register successfully')
+            swal("WoW!", "Register successfully", "success");
         }
     }
     return (
@@ -63,9 +66,23 @@ const Register = () => {
                                 type="password"
                                 variant="filled"
                             /> <br />
-                            <Button sx={{ width: '80%' }} type="submit" variant="contained">Submit</Button>
+                            <TextField
+                                sx={{ my: 1, width: '80%', background: '#fff' }}
+                                onBlur={regiChangeHandler}
+                                id="filled-basic"
+                                label="ReType Password"
+                                placeholder="Enter ReType Password"
+                                name="password2"
+                                type="password"
+                                variant="filled"
+                            /> <br />
+                            <Button sx={{ width: '80%' }} type="submit" variant="contained">Sign Up</Button>
                         </form>
-                        <Link to="/login">Already You Have An Account?Login Here</Link> <br />
+    }
+                        <Typography sx={{ textAlign: 'center', color: 'white', my: 2 }}>
+                            Already You Have An Account?
+                            <NavLink style={{ textDecoration: 'none' }} to="/login">Login Here</NavLink> <br />
+                        </Typography>
                     </Grid>
                     <Grid item xs={12} md={6}>
                         <img src="https://cdni.iconscout.com/illustration/premium/thumb/user-login-4268415-3551762.png" alt="" />

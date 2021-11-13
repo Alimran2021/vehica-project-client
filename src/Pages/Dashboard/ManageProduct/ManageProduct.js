@@ -5,14 +5,41 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { Grid, Box, Rating, Divider } from '@mui/material/';
-import { NavLink } from 'react-router-dom';
-import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
-import './product.css'
-const Product = ({ product }) => {
+import Grid from '@mui/material/Grid';
+import DeleteIcon from '@mui/icons-material/Delete';
+import swal from 'sweetalert';
+import { Divider, Rating, Box } from '@mui/material';
+const ManageProduct = ({ product, setProducts }) => {
     const { name, price, photo, rating, year, color, _id } = product
+    const pdDeleteHandler = (id) => {
+        fetch(`http://localhost:5005/productDelete/${id}`, {
+            method: 'DELETE',
+
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    swal({
+                        title: "Are you sure?",
+                        text: "Are you sure that you want to leave this page?",
+                        icon: "warning",
+                        dangerMode: true,
+                    })
+                        .then(willDelete => {
+                            if (willDelete) {
+                                swal("Deleted!", "Your imaginary file has been deleted!", "success");
+                            }
+                        });
+                    const filter = product.filter(pd => pd._id == id)
+                    setProducts(filter)
+
+                }
+            })
+    }
     return (
+
         <Grid item xs={4} sm={4} md={4}>
+
             <Card sx={{ background: '#001e3c', color: '#fff', cursor: 'pointer' }}>
                 <CardMedia
                     component="img"
@@ -42,15 +69,15 @@ const Product = ({ product }) => {
                         <Typography sx={{ background: '#ff4605', color: '#fff', fontSize: '20px', fontWeight: 'bold', borderRadius: '8px', padding: '3px 15px', marginRight: '20px' }}>
                             {year}
                         </Typography>
-                        <NavLink style={{ textDecoration: 'none' }} to={`/purchaseOrder/${_id}`}>
-                            <Button sx={{ color: '#ff4605', fontSize: '17px' }} size="small">Parches Now <DoubleArrowIcon sx={{ fontSize: '18px', ml: 1 }} /> </Button>
-                        </NavLink>
+                        <Button onClick={() => pdDeleteHandler(_id)} variant="outlined" startIcon={<DeleteIcon />}>
+                            Delete
+                        </Button>
                     </CardActions>
                 </Box>
             </Card>
-
         </Grid>
+
     );
 };
 
-export default Product;
+export default ManageProduct;

@@ -3,8 +3,10 @@ import Box from '@mui/material/Box';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import UserMenu from '../../Home/UserMenu/UserMenu';
 import { Link } from 'react-router-dom';
+import useAuth from '../../../hooks/useAuth/useAuth'
 
 const Navber = () => {
+    const { user } = useAuth()
     return (
         <div>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -19,11 +21,8 @@ const Navber = () => {
                         <Nav>
                             <Nav.Link as={Link} to="/home">Home</Nav.Link>
                             <Nav.Link as={Link} to="/explore">Explore</Nav.Link>
-                            <Nav.Link as={Link} to="/dashboard">Dashboard</Nav.Link>
+                            {user.email && <Nav.Link as={Link} to="/dashboard">Dashboard</Nav.Link>}
                             <Nav.Link as={Link} to="/login">Login</Nav.Link>
-                            <Nav.Link eventKey={2} href="#memes">
-                                Dank memes
-                            </Nav.Link>
                             <Box>
                                 <UserMenu />
                             </Box>

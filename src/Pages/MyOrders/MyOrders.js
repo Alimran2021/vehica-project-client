@@ -1,4 +1,3 @@
-import { Typography, Box } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import useAuth from '../../hooks/useAuth/useAuth';
 import Table from '@mui/material/Table';
@@ -7,24 +6,26 @@ import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import { Paper, Grid } from '@mui/material/';
+import { Paper } from '@mui/material/';
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
-import SendIcon from '@mui/icons-material/Send';
-import Stack from '@mui/material/Stack';
+import swal from 'sweetalert';
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
         backgroundColor: theme.palette.common.black,
         color: theme.palette.common.white,
     },
     [`&.${tableCellClasses.body}`]: {
+        backgroundColor: '#001e3c',
+        color: 'white',
         fontSize: 14,
     },
 }));
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
     '&:nth-of-type(odd)': {
-        backgroundColor: theme.palette.action.hover,
+        backgroundColor: '#001e3c',
+        color: 'white'
     },
     // hide last border
     '&:last-child td, &:last-child th': {
@@ -43,7 +44,22 @@ const MyOrders = () => {
     }, [user?.email])
     const itemDeleteHandler = id => {
         console.log(id)
-        const procced = window.confirm('Are You Sure Delete This Item?')
+        const procced = swal({
+            title: "Are you sure?",
+            text: "Are you sure delete this Order!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    swal("Deleted successfully!", {
+                        icon: "success",
+                    });
+                } else {
+                    swal("Your Order item safe!");
+                }
+            });
         if (procced) {
             const url = `https://guarded-savannah-01945.herokuapp.com/myOrders/${id}`
             fetch(url, {
@@ -84,7 +100,7 @@ const MyOrders = () => {
                             <StyledTableCell align="right">{row.productName}</StyledTableCell>
                             <StyledTableCell align="right">{row.status}</StyledTableCell>
                             <StyledTableCell align="right">
-                                <Button onClick={() => itemDeleteHandler(row._id)} variant="outlined" startIcon={<DeleteIcon />}>
+                                <Button sx={{ color: 'red' }} onClick={() => itemDeleteHandler(row._id)} variant="outlined" startIcon={<DeleteIcon />}>
                                     Delete
                                 </Button>
                             </StyledTableCell>

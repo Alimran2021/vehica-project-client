@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, Button } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -44,6 +44,8 @@ const UserMenu = () => {
                     PaperProps={{
                         elevation: 0,
                         sx: {
+                            backgroundColor: '#001e3c',
+                            color: 'white',
                             overflow: 'visible',
                             filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
                             mt: 1.5,
@@ -59,30 +61,32 @@ const UserMenu = () => {
                     transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                     anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                 >
-                    <MenuItem>
-                        <Avatar> <img src={user?.photoURL} alt="" /> </Avatar>
-                    </MenuItem>
-                    <MenuItem>
-                        {user?.displayName}
-                    </MenuItem>
+                    <Box sx={{ margin: 'auto' }}>
+                        <MenuItem>
+                            <img style={{ width: '50px', height: '50px', margin: 'auto', borderRadius: '50%' }} src={user?.photoURL} alt="" />
+                        </MenuItem>
+                        <MenuItem>
+                            <Typography style={{ margin: 'auto' }} >{user?.displayName}</Typography>
+                        </MenuItem>
+                    </Box>
                     <Divider />
                     <MenuItem>
                         <ListItemIcon>
-                            <PersonAdd fontSize="small" />
+                            <PersonAdd sx={{ color: 'white' }} fontSize="small" />
                         </ListItemIcon>
                         Add another account
                     </MenuItem>
                     <MenuItem>
                         <ListItemIcon>
-                            <Settings fontSize="small" />
+                            <Settings sx={{ color: 'white' }} fontSize="small" />
                         </ListItemIcon>
                         Settings
                     </MenuItem>
                     <MenuItem>
                         <ListItemIcon>
-                            <Logout fontSize="small" />
+                            <Logout sx={{ color: 'red' }} fontSize="small" />
                         </ListItemIcon>
-                        <Button onClick={logOut}>
+                        <Button sx={{ color: 'red' }} onClick={logOut}>
                             Logout
                         </Button>
                     </MenuItem>

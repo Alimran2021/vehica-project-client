@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
-import { TextField, Button, Container, Grid } from '@mui/material';
+import { TextField, Button, Container, Grid, Typography } from '@mui/material';
 import useAuth from '../../../../hooks/useAuth/useAuth';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Navber from '../../Navber/Navber';
 import { useLocation, useHistory } from 'react-router';
+import swal from 'sweetalert';
 const Login = () => {
     const [loginData, setLoginData] = useState({})
-    const { googleHandler, singInEmailPass } = useAuth()
+    const { googleHandler, singInEmailPass, error } = useAuth()
     const location = useLocation()
     const history = useHistory()
 
-    const googleLoginHandler = (location, history) => {
+    const googleLoginHandler = () => {
         googleHandler(location, history)
     }
 
@@ -27,7 +28,7 @@ const Login = () => {
         e.preventDefault()
         singInEmailPass(loginData.email, loginData.password, location, history)
         if (loginData) {
-            alert('login successfully')
+            swal("WoW!", "Login successfully", "success");
         }
     }
     return (
@@ -57,9 +58,15 @@ const Login = () => {
                                 type="password"
                                 variant="filled"
                             /> <br />
+                            <Typography sx={{ color: 'red' }}>
+                                {error}
+                            </Typography>
                             <Button sx={{ width: '100%', my: 1 }} type="submit" variant="contained">Login</Button>
                         </form>
-                        <Link to="/register">Create A New Account?Register Here</Link> <br />
+                        <Typography sx={{ textAlign: 'center', color: 'white' }}>
+                            Create A New Account?
+                            <NavLink style={{ textDecoration: 'none' }} to="/register">Register Here</NavLink> <br />
+                        </Typography>
                         <Button sx={{ width: '100%', mt: 3 }} onClick={googleLoginHandler} variant="contained">Google Sign In</Button>
                     </Grid>
                     <Grid item xs={12} sm={6} md={6}>

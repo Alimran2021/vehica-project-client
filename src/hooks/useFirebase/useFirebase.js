@@ -4,11 +4,14 @@ import initializFirebase from "../../Pages/Shared/Login/firebase/firebase.init";
 initializFirebase()
 const useFirebase = () => {
     const [user, setUser] = useState({})
-    const [admin, setAdmin] = useState('')
+    const [admin, setAdmin] = useState(false)
     const [isLoading, setIsloading] = useState(true)
+    const [error, setError] = useState(null)
     const auth = getAuth();
     const googleProvider = new GoogleAuthProvider()
+    // google login handler here
     const googleHandler = (location, history) => {
+        setIsloading(true)
         signInWithPopup(auth, googleProvider)
             .then((result) => {
                 const user = result.user
@@ -21,13 +24,18 @@ const useFirebase = () => {
                 // Handle Errors here.
 
             });
+        setIsloading(false)
     }
     // crate user with email and password
-    const registerAccount = (email, password, name) => {
+    const registerAccount = (email, password, name, location, history) => {
+        setIsloading(true)
         createUserWithEmailAndPassword(auth, email, password)
             .then((user) => {
                 const newUser = { email, displayName: name }
                 setUser(newUser)
+                const location_uri = location?.state?.from || "/home"
+                history.push(location_uri)
+                setError('')
                 userSaveDb(email, name, 'POST')
                 updateProfile(auth.currentUser, {
                     displayName: "name"
@@ -35,30 +43,34 @@ const useFirebase = () => {
                     // Profile updated!
                     // ...
                 }).catch((error) => {
-                    // An error occurred
-                    // ...
+
                 });
 
             })
             .catch((error) => {
-                console.log(error.message);
+                setError('Your Password dosnt matched!!');
             });
+        setIsloading(false)
     }
     // login user with email and password
     const singInEmailPass = (email, password, location, history) => {
+        setIsloading(false)
         signInWithEmailAndPassword(auth, email, password)
-            .then((user) => {
+            .then((result) => {
                 // Signed in 
-                setUser(user)
+                setUser(result.user)
+                setError('')
                 const location_uri = location?.state?.from || "/home"
                 history.push(location_uri)
+
             })
             .catch((error) => {
-                console.log(error.message);
+                setError('Your Email and password wrong!!');
             });
+        setIsloading(false)
 
     }
-
+    // onAuthStateChanged here
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
@@ -67,7 +79,7 @@ const useFirebase = () => {
                 // User is signed out
                 // ...
             }
-
+            setIsloading(false)
         });
         return () => unsubscribe
     }, [])
@@ -79,6 +91,7 @@ const useFirebase = () => {
             .then(res => res.json())
             .then(data => setAdmin(data.admin))
     }, [user.email])
+    // store user data on database
     const userSaveDb = (email, name, method) => {
         const newUser = { email: email, displayName: name }
         fetch('https://guarded-savannah-01945.herokuapp.com/users', {
@@ -107,6 +120,8 @@ const useFirebase = () => {
     return {
         user,
         admin,
+        error,
+        isLoading,
         googleHandler,
         registerAccount,
         singInEmailPass,

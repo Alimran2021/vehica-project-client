@@ -13,7 +13,7 @@ import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ReviewsIcon from '@mui/icons-material/Reviews';
 import PersonIcon from '@mui/icons-material/Person';
@@ -32,8 +32,10 @@ import ManageAllOrders from '../ManageAllOrders/ManageAllOrders';
 import AddProduct from '../AddProduct/AddProduct';
 import ManageProducts from '../ManageProducts/ManageProducts';
 import AdminRoute from '../../Shared/Login/AdminRoute/AdminRoute';
-
-
+import HomeIcon from '@mui/icons-material/Home';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import Payment from '../Payment/Payment';
 const drawerWidth = 240;
 
 const Dashboard = (props) => {
@@ -46,75 +48,98 @@ const Dashboard = (props) => {
     };
 
     const drawer = (
-        <div>
-            <Typography sx={{ textAlign: 'center', my: 2 }} variant="h5">
-                <Link to="/home">
-                    Home
-                </Link>
+        <Box style={{ backgroundColor: '#0a1929', height: '164%' }}>
+            <Typography sx={{ textAlign: 'center', my: 2, color: 'white' }} variant="h5">
+                Dashboard
             </Typography>
             {/* <Toolbar /> */}
-            <Divider />
+            <Divider sx={{ color: 'white' }} />
             <List>
                 {!admin ? <Box>
                     <ListItem>
-                        <ListItemIcon>
-                            <ShoppingCartIcon />
+                        <ListItemIcon sx={{ color: 'white' }}>
+                            <HomeIcon />
                         </ListItemIcon>
-                        <Link style={{ textDecoration: 'none' }} to={`${url}`}>My Orders</Link>
+                        <NavLink style={{ color: 'white', textDecoration: 'none' }} to="/home">
+                            Home
+                        </NavLink>
                         <ListItemText />
                     </ListItem>
                     <ListItem>
-                        <ListItemIcon>
+                        <ListItemIcon sx={{ color: 'white' }}>
+                            <ShoppingCartIcon />
+                        </ListItemIcon>
+                        <NavLink style={{ color: 'white', textDecoration: 'none' }} to={`${url}`}>My Orders</NavLink>
+                        <ListItemText />
+                    </ListItem>
+                    <ListItem>
+                        <ListItemIcon sx={{ color: 'white' }}>
+                            <ShoppingCartIcon />
+                        </ListItemIcon>
+                        <NavLink style={{ color: 'white', textDecoration: 'none' }} to={`${url}/payment`}>Payment</NavLink>
+                        <ListItemText />
+                    </ListItem>
+                    <ListItem>
+                        <ListItemIcon sx={{ color: 'white' }}>
                             <ReviewsIcon />
                         </ListItemIcon>
-                        <Link to={`${url}/review`}>Review</Link>
+                        <NavLink style={{ color: 'white', textDecoration: 'none' }} to={`${url}/review`}>Review</NavLink>
                         <ListItemText />
                     </ListItem>
                 </Box>
                     :
                     <Box>
                         <ListItem>
-                            <ListItemIcon>
-                                <PersonIcon />
+                            <ListItemIcon sx={{ color: 'white' }}>
+                                <HomeIcon />
                             </ListItemIcon>
-                            <Link to={`${url}/make admin`}>Make Admin</Link>
+                            <NavLink style={{ textDecoration: 'none', color: 'white' }} to="/home">
+                                Home
+                            </NavLink>
                             <ListItemText />
                         </ListItem>
                         <ListItem>
-                            <ListItemIcon>
+                            <ListItemIcon sx={{ color: 'white' }}>
+                                <PersonIcon />
+                            </ListItemIcon>
+                            <NavLink style={{ color: 'white', textDecoration: 'none' }} to={`${url}/make admin`}>Make Admin</NavLink>
+                            <ListItemText />
+                        </ListItem>
+                        <ListItem>
+                            <ListItemIcon sx={{ color: 'white' }}>
                                 <ShoppingCartIcon />
                             </ListItemIcon>
-                            <Link to={`${url}/manage orders`}>Manage All Orders</Link>
+                            <NavLink style={{ color: 'white', textDecoration: 'none' }} to={`${url}/manage orders`}>Manage All Orders</NavLink>
                             <ListItemText />
                         </ListItem>
                         <ListItem>
-                            <ListItemIcon>
-                                <PersonIcon />
+                            <ListItemIcon sx={{ color: 'white' }}>
+                                <AddCircleIcon />
                             </ListItemIcon>
-                            <Link to={`${url}/add product`}>Add Product</Link>
+                            <NavLink style={{ color: 'white', textDecoration: 'none' }} to={`${url}/add product`}>Add Product</NavLink>
                             <ListItemText />
                         </ListItem>
                         <ListItem>
-                            <ListItemIcon>
-                                <PersonIcon />
+                            <ListItemIcon sx={{ color: 'white' }}>
+                                <ManageAccountsIcon />
                             </ListItemIcon>
-                            <Link to={`${url}/manage products`}>Manage Products</Link>
+                            <NavLink style={{ color: 'white', textDecoration: 'none' }} to={`${url}/manage products`}>Manage Products</NavLink>
                             <ListItemText />
                         </ListItem>
                     </Box>}
                 <ListItem>
                     <MenuItem>
-                        <ListItemIcon>
+                        <ListItemIcon sx={{ color: 'red' }}>
                             <Logout fontSize="small" />
                         </ListItemIcon>
-                        <Button onClick={logOut}>
+                        <Button sx={{ color: 'red' }} onClick={logOut}>
                             Logout
                         </Button>
                     </MenuItem>
                 </ListItem>
 
             </List>
-        </div>
+        </Box>
     );
 
     const container = window !== undefined ? () => window().document.body : undefined;
@@ -125,6 +150,7 @@ const Dashboard = (props) => {
             <AppBar
                 position="fixed"
                 sx={{
+                    color: '#0a1929',
                     width: { sm: `calc(100% - ${drawerWidth}px)` },
                     ml: { sm: `${drawerWidth}px` },
                 }}
@@ -139,7 +165,7 @@ const Dashboard = (props) => {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" noWrap component="div">
+                    <Typography sx={{ color: 'white' }} variant="h6" noWrap component="div">
                         Dashboard
                     </Typography>
                 </Toolbar>
@@ -184,6 +210,9 @@ const Dashboard = (props) => {
                 <Switch>
                     <Route exact path={path}>
                         <MyOrders />
+                    </Route>
+                    <Route path={`${path}/payment`}>
+                        <Payment />
                     </Route>
                     <Route path={`${path}/review`}>
                         <DashboardReview />

@@ -22,7 +22,7 @@ const Reviews = () => {
             <Typography sx={{ color: 'white', textAlign: 'center' }} variant="h4">
                 Our Customer Reviews
             </Typography>
-            <List sx={{ width: '100%', bgcolor: 'background.paper', my: 7 }}>
+            <List sx={{ width: '100%', background: '#001e3c', color: '#fff', my: 7 }}>
                 <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                     {
                         reviews.map(review => <Grid item sx={{ my: 2 }} xs={12} sm={4} md={4}>
@@ -35,14 +35,18 @@ const Reviews = () => {
                                     secondary={
                                         <React.Fragment>
                                             <Typography
-                                                sx={{ display: 'inline' }}
+                                                sx={{
+                                                    display: 'inline',
+                                                    color: 'white'
+                                                }}
                                                 component="span"
                                                 variant="body2"
-                                                color="text.primary"
                                             >
                                                 Comments
                                             </Typography>
-                                            {` — ${review.comment}`}
+                                            <Typography sx={{ display: 'inline', color: 'white' }}>
+                                                {` — ${review.comment}`}
+                                            </Typography>
                                             <Typography>
                                                 <Rating name="read-only" value={review.rating} readOnly />
                                             </Typography>
