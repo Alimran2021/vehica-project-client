@@ -37,7 +37,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import Payment from '../Payment/Payment';
 const drawerWidth = 240;
-
+// dashboard all route here
 const Dashboard = (props) => {
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);

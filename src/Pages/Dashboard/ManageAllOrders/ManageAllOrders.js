@@ -42,6 +42,7 @@ const ColorButton = styled(Button)(({ theme }) => ({
         backgroundColor: purple[700],
     },
 }));
+// manage order start here
 const ManageAllOrders = () => {
     const [manageOrders, setManageOrders] = React.useState([])
     const [manageOrderId, setManageOrderId] = React.useState('')

@@ -1,14 +1,13 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import { Container } from '@mui/material';
+import { Container, Divider, Rating } from '@mui/material';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { Link } from 'react-router-dom';
 import DeleteIcon from '@mui/icons-material/Delete';
 import swal from 'sweetalert';
 import useProducts from '../../../hooks/useProducts/useProducts';
@@ -56,30 +55,40 @@ const ManageProducts = () => {
                 <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
                     {
                         products?.map(product => <Grid item xs={4} sm={4} md={4}>
-                            <Card sx={{ background: '#1a212c', color: '#fff' }}>
+                            <Card sx={{ background: '#001e3c', color: '#fff', cursor: 'pointer' }}>
                                 <CardMedia
                                     component="img"
                                     alt="green iguana"
-                                    height="140"
+                                    height="180"
                                     image={product?.photo}
                                 />
-                                <CardContent>
-                                    <Typography gutterBottom variant="h5" component="div">
-                                        {product?.name}
-                                    </Typography>
-                                    <Typography sx={{ color: '#fff' }} variant="body2" color="text.secondary">
-                                        Lizards are a widespread group of squamate reptiles, with over 6,000
-                                        species, ranging across all continents except Antarctica
-                                    </Typography>
-                                </CardContent>
-                                <CardActions sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                                    <Link to={`/purchaseOrder/${product?._id}`}>
-                                        <Button size="small">Parches Now</Button>
-                                    </Link>
-                                    <Button sx={{ color: 'red' }} onClick={() => pdDeleteHandler(product?._id)} variant="outlined" startIcon={<DeleteIcon />}>
-                                        Delete
-                                    </Button>
-                                </CardActions>
+                                <Typography sx={{ position: 'relative', bottom: 27, ml: 28, background: '#ff4605', color: '#fff', fontSize: '22px', fontWeight: 'bold', borderRadius: '20px', padding: '5px 10px', width: '124px' }}>
+                                    $ {product?.price}
+                                </Typography>
+                                <Box sx={{ p: 1 }}>
+                                    <CardContent sx={{ pt: 0 }}>
+                                        <Typography gutterBottom variant="h5" component="div">
+                                            {product?.name}
+                                        </Typography>
+                                        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                                            <Typography sx={{ color: '#ff4605', fontSize: '17px' }} variant="body2" color="text.secondary">
+                                                {product?.color}
+                                            </Typography>
+                                            <Typography variant="body2" sx={{ color: 'white' }}>
+                                                <Rating name="read-only" value={product?.rating} readOnly />
+                                            </Typography>
+                                        </Box>
+                                    </CardContent>
+                                    <Divider sx={{ color: 'white', m: 2 }} />
+                                    <CardActions sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                                        <Typography sx={{ background: '#ff4605', color: '#fff', fontSize: '20px', fontWeight: 'bold', borderRadius: '8px', padding: '3px 15px', marginRight: '20px' }}>
+                                            {product?.year}
+                                        </Typography>
+                                        <Button style={{ color: 'red' }} onClick={() => pdDeleteHandler(product?._id)} variant="outlined" startIcon={<DeleteIcon />}>
+                                            Delete
+                                        </Button>
+                                    </CardActions>
+                                </Box>
                             </Card>
 
                         </Grid>

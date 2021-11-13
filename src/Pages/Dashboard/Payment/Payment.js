@@ -1,6 +1,6 @@
 import { Typography, Box } from '@mui/material';
 import React from 'react';
-
+// explor start here
 const Payment = () => {
     return (
         <Box>

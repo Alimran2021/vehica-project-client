@@ -4,7 +4,7 @@ import { Container, Nav, Navbar } from 'react-bootstrap';
 import UserMenu from '../../Home/UserMenu/UserMenu';
 import { Link } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth/useAuth'
-
+// navber here
 const Navber = () => {
     const { user } = useAuth()
     return (
@@ -19,10 +19,10 @@ const Navber = () => {
                         <Nav className="me-auto">
                         </Nav>
                         <Nav>
-                            <Nav.Link as={Link} to="/home">Home</Nav.Link>
-                            <Nav.Link as={Link} to="/explore">Explore</Nav.Link>
-                            {user.email && <Nav.Link as={Link} to="/dashboard">Dashboard</Nav.Link>}
-                            <Nav.Link as={Link} to="/login">Login</Nav.Link>
+                            <Nav.Link style={{ fontSize: '19px' }} as={Link} to="/home">Home</Nav.Link>
+                            <Nav.Link style={{ fontSize: '19px' }} as={Link} to="/explore">Explore</Nav.Link>
+                            {user.email && <Nav.Link style={{ fontSize: '19px' }} as={Link} to="/dashboard">Dashboard</Nav.Link>}
+                            <Nav.Link style={{ fontSize: '19px' }} as={Link} to="/login">Login</Nav.Link>
                             <Box>
                                 <UserMenu />
                             </Box>

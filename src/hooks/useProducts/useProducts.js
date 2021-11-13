@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-
+// custom hook here
 const useProducts = () => {
     const [products, setProducts] = useState([])
     useEffect(() => {

@@ -1,7 +1,7 @@
 import { TextField, Button, Container, Typography } from '@mui/material';
 import React, { useState } from 'react';
-import useAuth from '../../../hooks/useAuth/useAuth';
 
+// make admin start here
 const MakeAdmin = () => {
     const [email, setEmail] = useState('')
     const emailHandler = (e) => {

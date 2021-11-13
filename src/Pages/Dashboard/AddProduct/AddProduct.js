@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import swal from 'sweetalert';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+// add product component here
 const AddProduct = () => {
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = data => {
