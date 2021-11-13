@@ -12,7 +12,7 @@ import { Divider, Rating, Box } from '@mui/material';
 const ManageProduct = ({ product, setProducts }) => {
     const { name, price, photo, rating, year, color, _id } = product
     const pdDeleteHandler = (id) => {
-        fetch(`http://localhost:5005/productDelete/${id}`, {
+        fetch(`https://guarded-savannah-01945.herokuapp.com/productDelete/${id}`, {
             method: 'DELETE',
 
         })

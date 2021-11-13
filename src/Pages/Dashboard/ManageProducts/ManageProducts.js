@@ -35,7 +35,7 @@ const ManageProducts = () => {
                 }
             });
         if (procced) {
-            fetch(`http://localhost:5005/productDelete/${id}`, {
+            fetch(`https://guarded-savannah-01945.herokuapp.com/productDelete/${id}`, {
                 method: 'DELETE',
 
             })

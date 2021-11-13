@@ -78,7 +78,6 @@ const Register = () => {
                             /> <br />
                             <Button sx={{ width: '80%' }} type="submit" variant="contained">Sign Up</Button>
                         </form>
-    }
                         <Typography sx={{ textAlign: 'center', color: 'white', my: 2 }}>
                             Already You Have An Account?
                             <NavLink style={{ textDecoration: 'none' }} to="/login">Login Here</NavLink> <br />
