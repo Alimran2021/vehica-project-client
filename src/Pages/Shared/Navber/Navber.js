@@ -22,7 +22,7 @@ const Navber = () => {
                             <Nav.Link style={{ fontSize: '19px' }} as={Link} to="/home">Home</Nav.Link>
                             <Nav.Link style={{ fontSize: '19px' }} as={Link} to="/explore">Explore</Nav.Link>
                             {user.email && <Nav.Link style={{ fontSize: '19px' }} as={Link} to="/dashboard">Dashboard</Nav.Link>}
-                            <Nav.Link style={{ fontSize: '19px' }} as={Link} to="/login">Login</Nav.Link>
+                            {!user.email && <Nav.Link style={{ fontSize: '19px' }} as={Link} to="/login">Login</Nav.Link>}
                             <Box>
                                 <UserMenu />
                             </Box>
